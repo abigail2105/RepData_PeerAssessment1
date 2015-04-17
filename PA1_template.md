@@ -384,16 +384,37 @@ fun6 <- function (x) {
 }
 westeps <- sapply(x, fun6)
 
+# to determine average maximum activity period of 5 minutes
+totact <- wksteps+westeps
+maxact <- max(totact)
+tot <- cbind(totact,ints)
+maxtot <- tot[totact == maxact,]
+maxStepTime <- maxtot[2]
+maxStepTime
+```
+
+```
+## ints 
+##  835
+```
+
+```r
 par(mfcol = c(2,1))
 
-plot(ints,wksteps, type = "l", main = "Average number of steps/5 minutes over 24 hrs during weekdays", xlab = "time interval", ylab = "average number of steps")
+plot(ints,wksteps, type = "l", main = "Average number of steps/5 minutes over 24 hrs during weekdays", xlab = "time interval, red line = overall average maximum", ylab = "average number of steps")
+abline(v = maxStepTime, col = 2)
 
-plot(ints,westeps, type = "l", main = "Average number of steps/5 minutes over 24 hrs during weekends", xlab = "time interval", ylab = "average number of steps")
+plot(ints,westeps, type = "l", main = "Average number of steps/5 minutes over 24 hrs during weekends", xlab = "time interval, red line = overall average maximum", ylab = "average number of steps")
+abline(v = maxStepTime, col = 2)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
-Comparing the plots of weekday and weekend activity, it seems that the subject was more active early in the morining on weekdays, and more active in the middle of the day and in the evenings at weekends. The peak in walking activity is around mid-morning on both weekdays and weekends. Total steps taken and avergae steps per 5 minutes tend to be higher at weekends. However the highest peak activity occurred during a weekday.
+The peak in average activity for all days combined was during the time interval given by masStepTime, which was 835
+
+Comparing the plots of weekday and weekend activity, it seems that the subject was more active early in the morining on weekdays, and more active in the middle of the day and in the evenings at weekends. 
+
+The peak in walking activity is around mid-morning on both weekdays and weekends. Total steps taken and average steps per 5 minutes tend to be higher at weekends. However the highest peak activity occurred during a weekday.
 
 ## Conclusion:
 
